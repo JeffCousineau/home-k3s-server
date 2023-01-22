@@ -29,3 +29,11 @@ spec:
     env:
       OCTOPRINT_PORT: 5000
       ENABLE_MJPG_STREAMER: "false"
+  volumeMounts:
+    mountPath: /dev/ttyUSB0
+    name: ttyUSB0
+    readOnly: false
+volumes:
+  name: ttyUSB0
+  hostPath:
+    path: /dev/ttyUSB0
