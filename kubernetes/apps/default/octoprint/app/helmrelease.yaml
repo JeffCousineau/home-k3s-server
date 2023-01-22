@@ -3,7 +3,7 @@ apiVersion: helm.toolkit.fluxcd.io/v2beta1
 kind: HelmRelease
 metadata:
   name: octoprint
-  namespace: flux-system
+  namespace: default
 spec:
   chart:
     spec:
@@ -14,4 +14,4 @@ spec:
         name: k8s-at-home
   interval: 15m0s
   releaseName: octoprint
-  targetNamespace: default
+  targetNamespace: flux-system
