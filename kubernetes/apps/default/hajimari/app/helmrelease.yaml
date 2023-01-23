@@ -30,16 +30,21 @@ spec:
       title: Apps
       darkTheme: espresso
       alwaysTargetBlank: true
-      showGreeting: false
+      showGreeting: true
       showAppGroups: false
-      showAppStatus: false
+      showAppStatus: true
+      showAppInfo: true
       showBookmarkGroups: false
       showGlobalBookmarks: false
       showAppUrls: false
       defaultEnable: true
-      namespaceSelector:
-        matchNames:
-          - default
+      customApps:
+        group: Apps
+        apps:
+          name: Homelab Repo
+          icon: github
+          url: https://github.com/JeffCousineau/homelab
+
     ingress:
       main:
         enabled: true
