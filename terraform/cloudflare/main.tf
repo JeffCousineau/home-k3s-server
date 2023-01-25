@@ -91,3 +91,34 @@ resource "cloudflare_record" "root" {
   type    = "CNAME"
   ttl     = 1
 }
+
+variable "cloudflare_zone_id" {
+  type    = string
+  default = "fcc5f79c33514d507befd62676e05e12"
+}
+
+resource "cloudflare_filter" "request_outside_canada" {
+  zone_id     = var.cloudflare_zone_id
+  description = "Incoming requests outside of Canada"
+  expression  = "(ip.geoip.country ne \"CA\")"
+}
+
+resource "cloudflare_firewall_rule" "block_requests" {
+  zone_id     = var.cloudflare_zone_id
+  description = "Block requests outside of Canada"
+  filter_id   = cloudflare_filter.request_outside_canada.id
+  action      = "block"
+}
+
+resource "cloudflare_filter" "request_inside_canada" {
+  zone_id     = var.cloudflare_zone_id
+  description = "Incoming requests from Canada"
+  expression  = "(ip.geoip.country eq \"CA\")"
+}
+
+resource "cloudflare_firewall_rule" "js_challenge_request" {
+  zone_id     = var.cloudflare_zone_id
+  description = "JS Challenge when requests are from Canada"
+  filter_id   = cloudflare_filter.request_inside_canada.id
+  action      = "js_challenge"
+}
