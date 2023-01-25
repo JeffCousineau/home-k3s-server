@@ -6,4 +6,5 @@ resources:
   - ./echo-server/ks.yaml
   - ./hajimari/ks.yaml
   - ./octoprint/ks.yaml
+  - ./openebs/ks.yaml
   - ./tautulli/ks.yaml
