@@ -5,15 +5,16 @@ metadata:
   name: tautulli
   namespace: default
 spec:
-  interval: 15m
+  interval: 5m
   chart:
     spec:
-      chart: tautulli
-      reconcileStrategy: ChartVersion
+      chart: app-template
+      version: 1.2.1
       sourceRef:
         kind: HelmRepository
-        name: k8s-at-home
+        name: bjw-s
         namespace: flux-system
+      interval: 5m
   maxHistory: 3
   install:
     createNamespace: true
@@ -26,6 +27,16 @@ spec:
   uninstall:
     keepHistory: false
   values:
+    controller:
+      strategy: RollingUpdate
+    image:
+      repository: ghcr.io/onedr0p/tautulli
+      tag: 2.11.1@sha256:151f4921ba9960969df663a21dada1bd63e46e76ceaaa2194b6b437a2bd66f77
+    service:
+      main:
+        ports:
+          http:
+            port: 8181
     env:
       TZ: America/New_York
     persistence:
