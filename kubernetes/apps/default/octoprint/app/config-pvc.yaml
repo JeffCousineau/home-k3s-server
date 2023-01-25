@@ -4,14 +4,10 @@ kind: PersistentVolumeClaim
 metadata:
   name: octoprint-config-v1
   namespace: default
-  # annotations:
-  #   benji-backup.me/fsfreeze: "yes"
-  # labels:
-  #   backup-this-pvc: "yes"
 spec:
   accessModes:
     - ReadWriteOnce
-  storageClassName: rook-ceph-block
   resources:
     requests:
       storage: 250Mi
+  storageClassName: openebs-jiva-csi-default
