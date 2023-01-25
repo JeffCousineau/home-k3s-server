@@ -39,10 +39,6 @@ spec:
             port: 8181
     env:
       TZ: America/New_York
-    persistence:
-      config:
-        enabled: true
-        existingClaim: tautulli-config-v1
     ingress:
       main:
         enabled: true

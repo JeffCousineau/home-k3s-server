@@ -32,9 +32,6 @@ spec:
     securityContext:
       privileged: true
     persistence:
-      data:
-        enabled: true
-        existingClaim: tautulli-config-v1
       printer:
         enabled: true
         type: hostPath
