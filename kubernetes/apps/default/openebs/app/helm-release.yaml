@@ -12,7 +12,7 @@ spec:
       reconcileStrategy: ChartVersion
       sourceRef:
         kind: HelmRepository
-        name: openebs-jiva-charts
+        name: openebs
         namespace: flux-system
   maxHistory: 3
   install:
