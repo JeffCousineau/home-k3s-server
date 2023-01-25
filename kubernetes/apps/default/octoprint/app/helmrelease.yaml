@@ -32,6 +32,9 @@ spec:
     securityContext:
       privileged: true
     persistence:
+      data:
+        enabled: true
+        existingClaim: octoprint-config-v1
       printer:
         enabled: true
         type: hostPath
