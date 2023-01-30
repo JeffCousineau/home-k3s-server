@@ -8,3 +8,4 @@ resources:
   - ./octoprint/ks.yaml
   - ./openebs/ks.yaml
   - ./tautulli/ks.yaml
+  - ./wordpress/ks.yaml

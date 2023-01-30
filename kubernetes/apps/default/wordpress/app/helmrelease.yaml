@@ -1,0 +1,44 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: wordpress
+  namespace: default
+spec:
+  interval: 15m
+  chart:
+    spec:
+      chart: wordpress
+      reconcileStrategy: ChartVersion
+      sourceRef:
+        kind: HelmRepository
+        name: bitnami
+        namespace: flux-system
+  maxHistory: 3
+  install:
+    createNamespace: true
+    remediation:
+      retries: 3
+  upgrade:
+    cleanupOnFail: true
+    remediation:
+      retries: 3
+  uninstall:
+    keepHistory: false
+    ingress:
+      main:
+        enabled: true
+        ingressClassName: nginx
+        annotations:
+          nginx.ingress.kubernetes.io/whitelist-source-range: |
+            10.0.0.0/8,172.16.0.0/12,192.168.0.0/16
+          hajimari.io/enable: "true"
+          hajimari.io/icon: wordpress
+        hosts:
+          - host: &host "wordpress.${SECRET_DOMAIN}"
+            paths:
+              - path: /
+                pathType: Prefix
+        tls:
+          - hosts:
+              - *host
