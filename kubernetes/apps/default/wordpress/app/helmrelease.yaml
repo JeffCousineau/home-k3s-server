@@ -26,6 +26,8 @@ spec:
   uninstall:
     keepHistory: false
   values:
+    mariadb:
+      enabled: false
     persistence:
       enabled: true
       existingClaim: "local-volume-pvc-wordpress"
