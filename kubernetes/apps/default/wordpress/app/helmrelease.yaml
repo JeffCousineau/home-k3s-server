@@ -27,7 +27,8 @@ spec:
     keepHistory: false
   values:
     persistence:
-      enabled: false
+      enabled: true
+      existingClaim: "local-volume-pvc-wordpress"
     ingress:
       main:
         enabled: true
